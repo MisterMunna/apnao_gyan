@@ -37,48 +37,49 @@
         <button id="generateAIDoodle">Generate AI Doodle</button>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.1/fabric.min.js"></script>
-    <script>
-        const canvas = new fabric.Canvas('doodleCanvas', {
-            isDrawingMode: false,
-            backgroundColor: '#fff',
-        });
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.1/fabric.min.js"></script>
+<script>
+    const canvas = new fabric.Canvas('doodleCanvas', {
+        isDrawingMode: false,
+        backgroundColor: '#fff',
+    });
 
-        document.getElementById('clearBtn').addEventListener('click', () => {
+    document.getElementById('clearBtn').addEventListener('click', () => {
+        canvas.clear();
+    });
+
+    document.getElementById('generateAIDoodle').addEventListener('click', () => {
+        generateAIDoodle();
+    });
+
+    function generateAIDoodle() {
+        const specialDay = new Date().getMonth() + 1; // Get the current month (1-12)
+
+        switch (specialDay) {
+            case 2: // February (Valentine's Day)
+                loadDoodleImage('https://via.placeholder.com/800x500/ff9999/000000?text=Valentine%27s+Day');
+                break;
+            case 4: // April (Earth Day)
+                loadDoodleImage('https://via.placeholder.com/800x500/66cc66/000000?text=Earth+Day');
+                break;
+            case 6: // June (Environment Day)
+                loadDoodleImage('https://via.placeholder.com/800x500/3399ff/000000?text=Environment+Day');
+                break;
+            default:
+                alert('Generating AI Doodle. (Placeholder)');
+                break;
+        }
+    }
+
+    function loadDoodleImage(imageUrl) {
+        fabric.Image.fromURL(imageUrl, (img) => {
+            img.scaleToWidth(canvas.width);
+            img.scaleToHeight(canvas.height);
             canvas.clear();
+            canvas.add(img);
         });
+    }
+</script>
 
-        document.getElementById('generateAIDoodle').addEventListener('click', () => {
-            generateAIDoodle();
-        });
-
-        function generateAIDoodle() {
-            const specialDay = new Date().getMonth() + 1; // Get the current month (1-12)
-
-            switch (specialDay) {
-                case 2: // February (Valentine's Day)
-                    loadDoodleImage('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2Fhearts-flowers-happy-valentines-day-card-for-everyone--693272936376063274%2F&psig=AOvVaw3y-0MyxqQQY1S_zXXVl_59&ust=1708163996519000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCJjS1v7Mr4QDFQAAAAAdAAAAABAE');
-                    break;
-                case 4: // April (Earth Day)
-                    loadDoodleImage('https://www.google.com/url?sa=i&url=https%3A%2F%2Fin.pinterest.com%2Fpin%2Fmake-it-every-day-earth-day-cards--693272936391612087%2F&psig=AOvVaw37Thh8oa-eMJLtOxdNABzl&ust=1708164060303000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCLDPoZ3Nr4QDFQAAAAAdAAAAABAE');
-                    break;
-                case 6: // June (Environment Day)
-                    loadDoodleImage('https://www.google.com/url?sa=i&url=https%3A%2F%2Fin.pinterest.com%2Fpin%2Fcustomize-your-own-environment-day-greeting-cards--659918151723682662%2F&psig=AOvVaw3B3k-Nrkytd2XDjPaukxaP&ust=1708164105032000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKCFtLLNr4QDFQAAAAAdAAAAABAE');
-                    break;
-                default:
-                    alert('Generating AI Doodle. (Placeholder)');
-                    break;
-            }
-        }
-
-        function loadDoodleImage(imageUrl) {
-            fabric.Image.fromURL(imageUrl, (img) => {
-                img.scaleToWidth(canvas.width);
-                img.scaleToHeight(canvas.height);
-                canvas.clear();
-                canvas.add(img);
-            });
-        }
-    </script>
 </body>
 </html>
