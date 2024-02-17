@@ -35,6 +35,7 @@
     <div id="controls">
         <button id="clearBtn">Clear</button>
         <button id="generateAIDoodle">Generate AI Doodle</button>
+        <button id="enableDrawingBtn">Enable Drawing</button>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.1/fabric.min.js"></script>
@@ -52,6 +53,10 @@
             generateAIDoodle();
         });
 
+        document.getElementById('enableDrawingBtn').addEventListener('click', () => {
+            enableDrawingMode();
+        });
+
         function generateAIDoodle() {
             const currentDate = new Date();
             const currentMonth = currentDate.getMonth() + 1; // Get the current month (1-12)
@@ -61,8 +66,10 @@
 
             if (doodleUrl) {
                 loadDoodleImage(doodleUrl);
+                canvas.isDrawingMode = false; // Disable drawing mode if a doodle is displayed
             } else {
-                alert('No special day for doodle generation.');
+                alert('No special day for doodle generation. You can draw your own!');
+                enableDrawingMode();
             }
         }
 
@@ -91,6 +98,11 @@
                 canvas.clear();
                 canvas.add(img);
             });
+        }
+
+        function enableDrawingMode() {
+            canvas.isDrawingMode = true;
+            alert('Drawing mode enabled. Click and drag to draw on the canvas.');
         }
     </script>
 </body>
