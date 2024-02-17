@@ -53,26 +53,39 @@
         });
 
         function generateAIDoodle() {
-            const specialDay = new Date().getMonth() + 1; // Get the current month (1-12)
+            const currentDate = new Date();
+            const currentMonth = currentDate.getMonth() + 1; // Get the current month (1-12)
+            const currentDay = currentDate.getDate(); // Get the current day of the month
 
-            switch (specialDay) {
-                case 2: // February (Valentine's Day)
-                    loadDoodleImage('https://via.placeholder.com/800x500/ff9999/000000?text=Valentine%27s+Day');
-                    break;
-                case 4: // April (Earth Day)
-                    loadDoodleImage('https://via.placeholder.com/800x500/66cc66/000000?text=Earth+Day');
-                    break;
-                case 6: // June (Environment Day)
-                    loadDoodleImage('https://via.placeholder.com/800x500/3399ff/000000?text=Environment+Day');
-                    break;
-                default:
-                    alert('Generating AI Doodle. (Placeholder)');
-                    break;
+            const doodleUrl = getSpecialDoodle(currentMonth, currentDay);
+
+            if (doodleUrl) {
+                loadDoodleImage(doodleUrl);
+            } else {
+                alert('No special day for doodle generation.');
             }
+        }
+
+        function getSpecialDoodle(month, day) {
+            // Define special days and their corresponding doodle URLs
+            const specialDays = {
+                '1-1': 'https://via.placeholder.com/800x500/ff9999/000000?text=New+Year%27s+Day',
+                '2-14': 'https://via.placeholder.com/800x500/ff9999/000000?text=Valentine%27s+Day',
+                '3-8': 'https://via.placeholder.com/800x500/66ccff/000000?text=International+Women%27s+Day',
+                '4-22': 'https://via.placeholder.com/800x500/9966cc/000000?text=Earth+Day',
+                '5-1': 'https://via.placeholder.com/800x500/66cc66/000000?text=May+Day',
+                '6-5': 'https://via.placeholder.com/800x500/3399ff/000000?text=World+Environment+Day',
+                '12-25': 'https://via.placeholder.com/800x500/ffcc00/000000?text=Christmas',
+                // Add more special days as needed
+            };
+
+            const key = `${month}-${day}`;
+            return specialDays[key] || null;
         }
 
         function loadDoodleImage(imageUrl) {
             fabric.Image.fromURL(imageUrl, (img) => {
+                img.set({ crossOrigin: 'anonymous' }); // Set crossOrigin property
                 img.scaleToWidth(canvas.width);
                 img.scaleToHeight(canvas.height);
                 canvas.clear();
