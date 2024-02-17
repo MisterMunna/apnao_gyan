@@ -57,13 +57,13 @@
 
             switch (specialDay) {
                 case 2: // February (Valentine's Day)
-                    loadDoodleImage('g.jpg');
+                    loadDoodleImage('https://via.placeholder.com/800x500/ff9999/000000?text=Valentine%27s+Day');
                     break;
                 case 4: // April (Earth Day)
-                    loadDoodleImage('hu.webp');
+                    loadDoodleImage('https://via.placeholder.com/800x500/66cc66/000000?text=Earth+Day');
                     break;
                 case 6: // June (Environment Day)
-                    loadDoodleImage('po.jpg');
+                    loadDoodleImage('https://via.placeholder.com/800x500/3399ff/000000?text=Environment+Day');
                     break;
                 default:
                     alert('Generating AI Doodle. (Placeholder)');
@@ -71,8 +71,7 @@
             }
         }
 
-        function loadDoodleImage(imageFileName) {
-            const imageUrl = imageFileName; // Assuming the images are in the same directory
+        function loadDoodleImage(imageUrl) {
             fabric.Image.fromURL(imageUrl, (img) => {
                 img.scaleToWidth(canvas.width);
                 img.scaleToHeight(canvas.height);
