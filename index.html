@@ -37,49 +37,49 @@
         <button id="generateAIDoodle">Generate AI Doodle</button>
     </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.1/fabric.min.js"></script>
-<script>
-    const canvas = new fabric.Canvas('doodleCanvas', {
-        isDrawingMode: false,
-        backgroundColor: '#fff',
-    });
-
-    document.getElementById('clearBtn').addEventListener('click', () => {
-        canvas.clear();
-    });
-
-    document.getElementById('generateAIDoodle').addEventListener('click', () => {
-        generateAIDoodle();
-    });
-
-    function generateAIDoodle() {
-        const specialDay = new Date().getMonth() + 1; // Get the current month (1-12)
-
-        switch (specialDay) {
-            case 2: // February (Valentine's Day)
-                loadDoodleImage('https://via.placeholder.com/800x500/ff9999/000000?text=Valentine%27s+Day');
-                break;
-            case 4: // April (Earth Day)
-                loadDoodleImage('https://via.placeholder.com/800x500/66cc66/000000?text=Earth+Day');
-                break;
-            case 6: // June (Environment Day)
-                loadDoodleImage('https://via.placeholder.com/800x500/3399ff/000000?text=Environment+Day');
-                break;
-            default:
-                alert('Generating AI Doodle. (Placeholder)');
-                break;
-        }
-    }
-
-    function loadDoodleImage(imageUrl) {
-        fabric.Image.fromURL(imageUrl, (img) => {
-            img.scaleToWidth(canvas.width);
-            img.scaleToHeight(canvas.height);
-            canvas.clear();
-            canvas.add(img);
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.1/fabric.min.js"></script>
+    <script>
+        const canvas = new fabric.Canvas('doodleCanvas', {
+            isDrawingMode: false,
+            backgroundColor: '#fff',
         });
-    }
-</script>
 
+        document.getElementById('clearBtn').addEventListener('click', () => {
+            canvas.clear();
+        });
+
+        document.getElementById('generateAIDoodle').addEventListener('click', () => {
+            generateAIDoodle();
+        });
+
+        function generateAIDoodle() {
+            const specialDay = new Date().getMonth() + 1; // Get the current month (1-12)
+
+            switch (specialDay) {
+                case 2: // February (Valentine's Day)
+                    loadDoodleImage('g.jpg');
+                    break;
+                case 4: // April (Earth Day)
+                    loadDoodleImage('hu.webp');
+                    break;
+                case 6: // June (Environment Day)
+                    loadDoodleImage('po.jpg');
+                    break;
+                default:
+                    alert('Generating AI Doodle. (Placeholder)');
+                    break;
+            }
+        }
+
+        function loadDoodleImage(imageFileName) {
+            const imageUrl = imageFileName; // Assuming the images are in the same directory
+            fabric.Image.fromURL(imageUrl, (img) => {
+                img.scaleToWidth(canvas.width);
+                img.scaleToHeight(canvas.height);
+                canvas.clear();
+                canvas.add(img);
+            });
+        }
+    </script>
 </body>
 </html>
